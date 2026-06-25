@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>再次遇见 · 雷速</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fce8d5 0%, #fcdbb5 40%, #f7cba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      line-height: 1.7;
+      color: #3a2e26;
+    }
+
+    .card {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(255, 250, 242, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 48px 48px 40px 40px;
+      padding: 2.8rem 2.5rem;
+      box-shadow: 0 20px 40px -12px rgba(140, 80, 40, 0.28), 0 8px 20px rgba(0,0,0,0.03);
+      transition: all 0.2s ease;
+    }
+
+    @media (max-width: 560px) {
+      .card {
+        padding: 2rem 1.5rem;
+        border-radius: 36px 36px 28px 28px;
+      }
+    }
+
+    .opening-line {
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: #8f6b4f;
+      margin-bottom: 0.6rem;
+      font-weight: 400;
+      border-left: 3px solid #d9a77a;
+      padding-left: 1rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: #4d3425;
+      margin: 0.2rem 0 1.2rem 0;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .story {
+      margin-bottom: 2rem;
+    }
+
+    .story p {
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .story p:last-of-type {
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      margin: 2rem 0 1.6rem 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-item {
+      flex: 1 1 200px;
+      background: #faeedf;
+      border-radius: 60px;
+      padding: 0.6rem 1.2rem 0.6rem 1.8rem;
+      font-size: 0.98rem;
+      color: #4d3828;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: inset 0 1px 3px rgba(255,255,240,0.8), 0 2px 4px rgba(150, 90, 50, 0.08);
+    }
+
+    .feature-item::before {
+      content: "·";
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #b77f5b;
+      line-height: 1;
+      margin-right: 0.1rem;
+    }
+
+    .gentle-cta {
+      background: #f3e3d3;
+      padding: 1.3rem 1.8rem;
+      border-radius: 40px;
+      margin: 2rem 0 1.8rem 0;
+      text-align: center;
+      border: 1px solid #eddac5;
+      box-shadow: 0 4px 8px rgba(170, 110, 60, 0.06);
+    }
+
+    .gentle-cta p {
+      font-size: 1.05rem;
+      color: #4a3629;
+    }
+
+    a {
+      color: #8c5d3b;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.1rem 0.4rem;
+      border-radius: 40px;
+      transition: all 0.15s ease;
+      background: transparent;
+      border-bottom: 1px dashed #c4956b;
+    }
+
+    a:hover {
+      background: #dbb998;
+      color: #2f2018;
+      border-bottom: 1px solid #8c5d3b;
+    }
+
+    .faq-summary {
+      margin: 1.8rem 0 0.6rem 0;
+      border-top: 1px solid #e8d3c0;
+      padding-top: 1.5rem;
+    }
+
+    .faq-summary details {
+      margin-bottom: 0.6rem;
+      font-size: 0.98rem;
+    }
+
+    .faq-summary summary {
+      cursor: default;
+      font-weight: 450;
+      color: #604632;
+      padding: 0.2rem 0;
+      list-style: none;
+      display: inline-block;
+    }
+
+    .faq-summary summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-summary summary::before {
+      content: "▸ ";
+      color: #b77f5b;
+      font-size: 1rem;
+    }
+
+    .faq-summary details[open] summary::before {
+      content: "▾ ";
+    }
+
+    .faq-summary .answer {
+      padding: 0.2rem 0 0.6rem 1.2rem;
+      color: #5d4838;
+    }
+
+    .closing-note {
+      margin-top: 2.2rem;
+      text-align: right;
+      font-size: 0.95rem;
+      color: #7a5f4b;
+      border-top: 1px solid #edd6c0;
+      padding-top: 1.5rem;
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+    .closing-note span {
+      background: #faeedf;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #dbbc9f, transparent);
+      margin: 1.2rem 0 0.6rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="opening-line">—— 再次翻开这一页 ——</div>
+    <h1>像老朋友一样，回到这里</h1>
+
+    <div class="story">
+      <p>有些人习惯把好用的站点随手收藏，想着「下次再来」。但日子一忙，那个标签就沉到了书签栏深处。直到某天无意滑到，才恍然：原来已经隔了这么久。<br>
+      那些曾经顺手就打开的页面，渐渐变成了收藏夹里的数字。其实，偶尔回来看看，感觉还是熟悉的。</p>
+
+      <p>对 <a href="https://leisu-zhs-sport.com">雷速</a> 的印象，最早是简洁、直接，没有太多花哨的东西。后来每次重新打开，都会发现一些细微的更新——不是那种铺天盖地的改版，而是让人舒服的调整。就像常去的街角小店，老板默默换了更软的坐垫，茶水的温度也总是刚好。</p>
+    </div>
+
+    <ul class="feature-grid">
+      <li class="feature-item">内容更新平稳，不吵不闹</li>
+      <li class="feature-item">导航清晰，想找什么心里有数</li>
+      <li class="feature-item">没有突兀的弹窗打扰阅读</li>
+      <li class="feature-item">页面响应快，等待很少</li>
+    </ul>
+
+    <div class="gentle-cta">
+      <p>📎 如果你也曾短暂离开，不妨把 <a href="https://leisu-zhs-sport.com">雷速</a> 重新放回书签栏。有些地方值得偶尔回来看看，不用刻意，随性就好。</p>
+    </div>
+
+    <div class="faq-summary">
+      <details>
+        <summary>为什么选择再次收藏，而不是用搜索引擎临时找？</summary>
+        <div class="answer">因为收藏夹里的站点，往往经过自己筛选，质量相对稳定。临时搜索虽然快，但结果里总混着不熟悉的链接，还需要再花时间判断。而已经熟悉的站点，省去了反复试探的精力。</div>
+      </details>
+      <details>
+        <summary>这个站的信息更新频率如何？</summary>
+        <div class="answer">不算特别密集，但保持一定的节奏。不会一天推送几十条让你焦虑，也不会半个月没有动静。适合那种想了解动态，又不想被信息流裹挟的人。</div>
+      </details>
+    </div>
+
+    <div class="closing-note">
+      <span>保持温和，持续在场</span>
+    </div>
+
+    <hr>
+    <div style="font-size: 0.85rem; color: #7d6452; text-align: center; margin-top: 0.6rem; opacity: 0.7;">
+      — 不刻意，不打扰，刚刚好 —
+    </div>
+  </div>
+</body>
+</html>
